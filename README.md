@@ -1,5 +1,10 @@
 # VIBE CODERS Leaderboard
 
+[https://vibestats.gurunetwork.ai/](https://vibestats.gurunetwork.ai/)
+
+[https://t.me/CURSORVIBES](https://t.me/CURSORVIBES)
+
+
 A Next.js web application for tracking and displaying AI coding tool usage statistics. Users upload their Cursor usage CSV exports to compete on a public leaderboard.
 
 ## Tech Stack
