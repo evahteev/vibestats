@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Hacker dark theme - always dark */
+    --background: 220 20% 4%;
+    --foreground: 150 80% 90%;
+    --card: 220 20% 6%;
+    --card-foreground: 150 80% 90%;
+    --popover: 220 20% 8%;
+    --popover-foreground: 150 80% 90%;
+    --primary: 150 100% 50%;
+    --primary-foreground: 220 20% 4%;
+    --secondary: 220 20% 12%;
+    --secondary-foreground: 150 80% 90%;
+    --muted: 220 20% 10%;
+    --muted-foreground: 150 30% 60%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 220 20% 4%;
+    --destructive: 0 80% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 150 30% 20%;
+    --input: 220 20% 12%;
+    --ring: 150 100% 50%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  }
+
+  /* Container with proper padding */
+  .container {
+    @apply px-6 sm:px-8 lg:px-12 mx-auto max-w-7xl;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+}
+
+@layer utilities {
+  /* Neon glow effects */
+  .glow {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.8),
+                 0 0 20px hsl(var(--primary) / 0.6),
+                 0 0 30px hsl(var(--primary) / 0.4);
+  }
+
+  .glow-box {
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.3),
+                0 0 20px hsl(var(--primary) / 0.2),
+                inset 0 0 10px hsl(var(--primary) / 0.1);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.5),
+                inset 0 0 5px hsl(var(--primary) / 0.1);
+  }
+
+  /* Scanline effect */
+  .scanlines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--primary) / 0.03) 2px,
+      hsl(var(--primary) / 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Matrix rain gradient */
+  .matrix-gradient {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--primary) / 0.1) 0%,
+      transparent 100%
+    );
+  }
+
+  /* Cyber grid pattern */
+  .cyber-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Animated border */
+  .animated-border {
+    position: relative;
+  }
+
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary)),
+      hsl(var(--accent)),
+      hsl(var(--primary))
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderRotate 3s linear infinite;
+    background-size: 200% 100%;
+  }
+
+  @keyframes borderRotate {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  /* Terminal cursor blink */
+  .cursor-blink::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* Typing effect */
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  .typing {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(40, end);
+  }
+}
+
+/* Override Inter font with monospace */
+.__className_f367f3 {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', ui-monospace, Consolas, monospace !important;
+}
+
+/* Luka sidebar layout shift */
+body.luka-sidebar-open .min-h-screen {
+  margin-right: 420px;
+  transition: margin-right 0.3s ease;
+}
+
+body .min-h-screen {
+  transition: margin-right 0.3s ease;
+}
